@@ -10,7 +10,9 @@ export async function getServerSideProps(context) {
 
 export default function Home({ products }) {
   const productHtmls = products.map((product, index) => (
-    <li key={index}>{product.name} 10dkk</li>
+    <li key={index}>
+      {product.name} {product.price}dkk
+    </li>
   ));
   return (
     <div>
