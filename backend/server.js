@@ -8,6 +8,7 @@ dotenv.config({ path: "./config/config.env" });
 connectDB();
 
 const products = require("./routes/products");
+const basketItems = require("./routes/basket-items");
 
 const app = express();
 
@@ -18,6 +19,7 @@ if (process.env.NODE_ENV === "development") {
 }
 
 app.use("/api/v1/products", products);
+app.use("/api/v1/basket-items", basketItems);
 
 const PORT = process.env.PORT || 6000;
 
