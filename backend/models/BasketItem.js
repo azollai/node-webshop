@@ -5,6 +5,7 @@ const schema = new mongoose.Schema({
     type: Number,
     default: 0,
     unique: true,
+    minlength: 1,
   },
   createdAt: {
     type: Date,

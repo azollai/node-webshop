@@ -18,3 +18,11 @@ exports.create = async (req, res, next) => {
     res.status(400).json({ message: error.message });
   }
 };
+
+exports.remove = async (req, res, next) => {
+  const result = await BasketItem.findById(req.params.basketItemId);
+  console.log("RES", result, req.params.basketItemId);
+
+  await result.remove();
+  res.status(200).json(result);
+};

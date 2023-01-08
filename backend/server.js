@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
 const connectDB = require("./config/db");
+const cors = require("cors");
 
 dotenv.config({ path: "./config/config.env" });
 
@@ -12,6 +13,7 @@ const basketItems = require("./routes/basket-items");
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 
 if (process.env.NODE_ENV === "development") {

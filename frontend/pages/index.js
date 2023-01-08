@@ -23,9 +23,21 @@ export default function Home({ products, basketItems }) {
 
   const basketItemHtmls = basketItems.map((basketItem, index) => (
     <li key={index}>
-      {basketItem.product.name}: {basketItem.quantity} piece
+      {basketItem.product.name}: {basketItem.quantity} piece{" "}
+      <span
+        onClick={()=>deleteBasketItem(basketItem._id)}
+        style={{ cursor: "pointer" }}
+      >
+        X
+      </span>
     </li>
   ));
+
+  async function deleteBasketItem(id) {
+    await fetch(`http://localhost:3030/api/v1/basket-items/${id}`, {
+      method: "DELETE",
+    });
+  }
 
   return (
     <div>
