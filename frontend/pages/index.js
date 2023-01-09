@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { useRouter } from "next/navigation";
 
 export async function getServerSideProps(context) {
   const productsResponse = await fetch("http://localhost:3030/api/v1/products");
@@ -15,9 +16,17 @@ export async function getServerSideProps(context) {
 }
 
 export default function Home({ products, basketItems }) {
+  const router = useRouter();
+
   const productHtmls = products.map((product, index) => (
     <li key={index}>
-      {product.name} {product.price}dkk
+      {product.name} {product.price}dkk{" "}
+      <span
+        onClick={() => createBasketItem(product._id)}
+        style={{ cursor: "pointer" }}
+      >
+        +
+      </span>
     </li>
   ));
 
@@ -25,7 +34,7 @@ export default function Home({ products, basketItems }) {
     <li key={index}>
       {basketItem.product.name}: {basketItem.quantity} piece{" "}
       <span
-        onClick={()=>deleteBasketItem(basketItem._id)}
+        onClick={() => deleteBasketItem(basketItem._id)}
         style={{ cursor: "pointer" }}
       >
         X
@@ -33,10 +42,18 @@ export default function Home({ products, basketItems }) {
     </li>
   ));
 
+  async function createBasketItem(id) {
+    await fetch(`http://localhost:3030/api/v1/products/${id}/basket-items`, {
+      method: "POST",
+    });
+    router.refresh();
+  }
+
   async function deleteBasketItem(id) {
     await fetch(`http://localhost:3030/api/v1/basket-items/${id}`, {
       method: "DELETE",
     });
+    router.refresh();
   }
 
   return (

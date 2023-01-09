@@ -11,7 +11,6 @@ exports.getAll = async (req, res, next) => {
 exports.create = async (req, res, next) => {
   try {
     req.body.product = req.params.productId;
-    console.log("product", req.query);
     const result = await BasketItem.create(req.body);
     res.status(201).json(result);
   } catch (error) {

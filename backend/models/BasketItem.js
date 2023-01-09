@@ -3,8 +3,7 @@ const mongoose = require("mongoose");
 const schema = new mongoose.Schema({
   quantity: {
     type: Number,
-    default: 0,
-    unique: true,
+    default: 1,
     minlength: 1,
   },
   createdAt: {
@@ -15,6 +14,7 @@ const schema = new mongoose.Schema({
     type: mongoose.Schema.ObjectId,
     ref: "Product",
     required: true,
+    unique: true,
   },
 });
 
