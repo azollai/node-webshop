@@ -25,8 +25,6 @@ export async function getServerSideProps(context) {
 }
 
 export default function Home({ _products, _basketItems }) {
-  const router = useRouter();
-
   const [products, setProducts] = useState([]);
   const [basketItems, setBasketItems] = useState([]);
 
