@@ -1,22 +1,43 @@
 import Head from "next/head";
-import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
 
-export async function getServerSideProps(context) {
+async function getProducts() {
   const productsResponse = await fetch("http://localhost:3030/api/v1/products");
   const products = await productsResponse.json();
+  return products;
+}
 
+async function getBasketItems() {
   const basketItemsResponse = await fetch(
     "http://localhost:3030/api/v1/basket-items"
   );
   const basketItems = await basketItemsResponse.json();
+  return basketItems;
+}
+
+export async function getServerSideProps(context) {
+  const _products = await getProducts();
+  const _basketItems = await getBasketItems();
 
   return {
-    props: { products, basketItems },
+    props: { _products, _basketItems },
   };
 }
 
-export default function Home({ products, basketItems }) {
+export default function Home({ _products, _basketItems }) {
   const router = useRouter();
+
+  const [products, setProducts] = useState([]);
+  const [basketItems, setBasketItems] = useState([]);
+
+  useEffect(() => {
+    setProducts(_products);
+    setBasketItems(_basketItems);
+  }, []);
+
+  async function updatePage() {
+    setBasketItems(await getBasketItems());
+  }
 
   const productHtmls = products.map((product, index) => (
     <li key={index}>
@@ -46,14 +67,14 @@ export default function Home({ products, basketItems }) {
     await fetch(`http://localhost:3030/api/v1/products/${id}/basket-items`, {
       method: "POST",
     });
-    router.refresh();
+    await updatePage();
   }
 
   async function deleteBasketItem(id) {
     await fetch(`http://localhost:3030/api/v1/basket-items/${id}`, {
       method: "DELETE",
     });
-    router.refresh();
+    await updatePage();
   }
 
   return (
