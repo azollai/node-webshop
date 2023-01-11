@@ -75,6 +75,18 @@ export default function Home({ _products, _basketItems }) {
     await updatePage();
   }
 
+  async function checkout() {
+    const response = await fetch(
+      `http://localhost:3030/api/v1/payments/create-checkout-session`,
+      {
+        method: "POST",
+      }
+    );
+    const url = await response.json();
+    console.log(url);
+    window.open(url, "_blank");
+  }
+
   return (
     <div>
       <Head>
@@ -89,6 +101,8 @@ export default function Home({ _products, _basketItems }) {
       <h1>Basket</h1>
 
       <ul>{basketItemHtmls}</ul>
+
+      <button onClick={() => checkout()}>Checkout</button>
     </div>
   );
 }

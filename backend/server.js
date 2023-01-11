@@ -10,6 +10,7 @@ connectDB();
 
 const products = require("./routes/products");
 const basketItems = require("./routes/basket-items");
+const payments = require("./routes/payments");
 
 const app = express();
 
@@ -22,6 +23,7 @@ if (process.env.NODE_ENV === "development") {
 
 app.use("/api/v1/products", products);
 app.use("/api/v1/basket-items", basketItems);
+app.use("/api/v1/payments", payments);
 
 const PORT = process.env.PORT || 6000;
 
