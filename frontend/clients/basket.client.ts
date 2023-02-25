@@ -5,3 +5,10 @@ export async function getBasketItems() {
   const basketItems = await basketItemsResponse.json();
   return basketItems;
 }
+
+
+export async function createBasketItem(id) {
+  await fetch(`http://localhost:3030/api/v1/products/${id}/basket-items`, {
+    method: "POST",
+  });
+}
