@@ -1,5 +1,6 @@
 import { createBasketItem } from "clients/basket.client";
 import { getProducts } from "clients/products.client";
+import Drawer from "components/drawer";
 import Head from "next/head";
 import { useState, useEffect } from "react";
 
@@ -47,7 +48,13 @@ export default function Home({ _products }) {
         <title>Products</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <h1 className="text-3xl font-bold p-2">Products</h1>
+      <div className="flex justify-between">
+        <h1 className="text-3xl font-bold p-2">Products</h1>
+
+        <Drawer>
+          <div className="px-4">List goes here</div>
+        </Drawer>
+      </div>
 
       <div className="flex">{productHtmls}</div>
     </div>

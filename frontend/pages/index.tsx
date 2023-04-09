@@ -1,3 +1,4 @@
+import Drawer from "components/drawer";
 import Head from "next/head";
 import { useState, useEffect } from "react";
 
@@ -93,6 +94,8 @@ export default function Home({ _products, _basketItems }) {
         <title>Webshop</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
+      <Drawer />
 
       <h1>Products</h1>
 
