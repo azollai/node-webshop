@@ -1,3 +1,4 @@
+import { deleteBasketItem } from "clients/basket.client";
 import Drawer from "components/drawer";
 import Head from "next/head";
 import { useState, useEffect } from "react";
@@ -54,7 +55,7 @@ export default function Home({ _products, _basketItems }) {
     <li key={index}>
       {basketItem.product.name}: {basketItem.quantity} piece{" "}
       <span
-        onClick={() => deleteBasketItem(basketItem._id)}
+        onClick={() => _deleteBasketItem(basketItem._id)}
         style={{ cursor: "pointer" }}
       >
         X
@@ -69,10 +70,8 @@ export default function Home({ _products, _basketItems }) {
     await updatePage();
   }
 
-  async function deleteBasketItem(id) {
-    await fetch(`http://localhost:3030/api/v1/basket-items/${id}`, {
-      method: "DELETE",
-    });
+  async function _deleteBasketItem(id) {
+    await deleteBasketItem(id)
     await updatePage();
   }
 
