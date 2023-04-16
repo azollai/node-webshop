@@ -1,9 +1,13 @@
-import { deleteBasketItem, getBasketItems } from "clients/basket.client";
+import {
+  BasketItem,
+  deleteBasketItem,
+  getBasketItems,
+} from "clients/basket.client";
 import Drawer from "./drawer";
 import { useEffect, useState } from "react";
 
 export default function TheDrawer() {
-  const [basketItems, setBasketItems] = useState([]);
+  const [basketItems, setBasketItems] = useState<BasketItem[]>([]);
 
   async function minus(id) {
     await deleteBasketItem(id);
@@ -18,8 +22,11 @@ export default function TheDrawer() {
 
   const baksetItemsHtmls = basketItems.map((basketItem, index) => {
     return (
-      <div key={index} className="flex justify-between">
-        <div>{basketItem.product.name}</div>
+      <div key={index} className="flex justify-between align-center my-2">
+        <div>
+          <div>{basketItem.product.name}</div>
+          <div className="text-sm">{basketItem.product.price} kr. </div>
+        </div>
 
         <div className="flex items-center">
           <button

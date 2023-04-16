@@ -3,7 +3,7 @@ const BasketItem = require("../models/BasketItem");
 exports.getAll = async (req, res, next) => {
   const results = await BasketItem.find().populate({
     path: "product",
-    select: "name",
+    select: "name price",
   });
   return res.status(200).json(results);
 };

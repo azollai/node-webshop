@@ -1,5 +1,5 @@
 import { createBasketItem } from "clients/basket.client";
-import { getProducts } from "clients/products.client";
+import { getProducts } from "clients/product.client";
 import TheDrawer from "components/the-drawer";
 import ProductCard from "components/product-card";
 import Head from "next/head";
