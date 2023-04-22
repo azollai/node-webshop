@@ -20,7 +20,7 @@ export default function TheDrawer() {
 
   function plus() {}
 
-  const baksetItemsHtmls = basketItems.map((basketItem, index) => {
+  const basketItemsHtmls = basketItems.map((basketItem, index) => {
     return (
       <div key={index} className="flex justify-between align-center my-2">
         <div>
@@ -55,7 +55,7 @@ export default function TheDrawer() {
 
   return (
     <Drawer>
-      <div className="px-4">{baksetItemsHtmls}</div>
+      <div className="px-4">{basketItemsHtmls}</div>
     </Drawer>
   );
 }
