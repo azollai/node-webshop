@@ -1,6 +1,19 @@
-import { createBasketItem } from "clients/basket.client";
+export default function ProductCard({ product, click, children }) {
+  const productCardButton = () => {
+    if (children) {
+      return children;
+    } else {
+      return (
+        <button
+          onClick={() => click(product._id)}
+          className="bg-green-700 hover:bg-green-600 w-full text-white p-1 rounded"
+        >
+          Læg i kurv
+        </button>
+      );
+    }
+  };
 
-export default function ProductCard({ product, click }) {
   return (
     <div className="drop-shadow-lg border-2 rounded m-2 p-2 bg-white">
       <img
@@ -13,12 +26,8 @@ export default function ProductCard({ product, click }) {
       <div className="mb-1">
         <span className="font-bold text-xl">{product.price} </span>dkk
       </div>
-      <button
-        onClick={() => click(product._id)}
-        className="bg-green-700 hover:bg-green-600 w-full text-white p-1 rounded"
-      >
-        Læg i kurv
-      </button>
+
+      <div className="flex justify-center">{productCardButton()}</div>
     </div>
   );
 }

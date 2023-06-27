@@ -3,14 +3,16 @@ Priority for MVP:
 - [x] Select products to basket
 - [x] Remove products from basket
 - [x] Pay (https://stripe.com/docs/payments/accept-a-payment)
-- [ ] Styling
+- [x] Styling
 - [ ] Have a lot of different products
-- [ ] Show products in categories
-- [ ] Search, filter options for products
-- [ ] Favourites
-- [ ] Pictures for products
-- [ ] Authentication
-- [ ] Video/Carousel for modern look
-- [ ] Cookie usage popup
 - [ ] Add more of the same product
+- [ ] Pictures for products
+- [ ] Search, filter options for products
+- [ ] Show products in categories
 - [ ] Write tests
+
+- [ ] Mobile responsiveness
+- [ ] Cookie usage popup
+- [ ] Video/Carousel for modern look
+- [ ] Authentication
+- [ ] Favourites

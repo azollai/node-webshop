@@ -1,7 +1,10 @@
 const Product = require("../models/Product");
 
 exports.getAll = async (req, res, next) => {
-  const results = await Product.find();
+  const results = await Product.find().populate({
+    path: "basketItems",
+    select: "quantity",
+  });
   return res.status(200).json(results);
 };
 

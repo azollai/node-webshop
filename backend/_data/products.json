@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Basilikum",
+    "price": 15.0
+  },
+  {
+    "name": "Agurk",
+    "price": 8.0
+  },
+  {
+    "name": "Tomat",
+    "price": 18.0
+  },
+  {
+    "name": "Peberfrugt",
+    "price": 10.0
+  },
+  {
+    "name": "Chili",
+    "price": 18.0
+  },
+  {
+    "name": "Iceberg salat",
+    "price": 11.0
+  },
+  {
+    "name": "Champignon",
+    "price": 12.5
+  },
+  {
+    "name": "Asparges",
+    "price": 35.0
+  },
+  {
+    "name": "Forårsløg",
+    "price": 8.0
+  },
+  {
+    "name": "Aubergine",
+    "price": 16.0
+  },
+  {
+    "name": "Majskolbe",
+    "price": 10.0
+  },
+  {
+    "name": "Gulerødder",
+    "price": 16.0
+  },
+  {
+    "name": "Bagekartoffel",
+    "price": 6.0
+  },
+  {
+    "name": "Hvidløg",
+    "price": 10.0
+  },
+  {
+    "name": "Rødløg",
+    "price": 12.0
+  }
+]
