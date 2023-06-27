@@ -49,18 +49,16 @@ export default function Home({ _products, _basketItems }) {
   }
 
   const productHtmls = products.map((product, index) => (
-    <div key={index}>
-      <ProductCard product={product} click={addBasketItem}>
-        {product.basketItems.length ? (
-          <Counter
-            id={product.basketItems[0]._id}
-            quantity={product.basketItems[0].quantity}
-            plus={addBasketItem}
-            minus={removeBasketItem}
-          />
-        ) : null}
-      </ProductCard>
-    </div>
+    <ProductCard product={product} key={index} click={addBasketItem}>
+      {product.basketItems.length ? (
+        <Counter
+          id={product.basketItems[0]._id}
+          quantity={product.basketItems[0].quantity}
+          plus={addBasketItem}
+          minus={removeBasketItem}
+        />
+      ) : null}
+    </ProductCard>
   ));
 
   return (
@@ -82,7 +80,7 @@ export default function Home({ _products, _basketItems }) {
         </Drawer>
       </div>
 
-      <div className="flex">{productHtmls}</div>
+      <div className="flex flex-wrap">{productHtmls}</div>
     </div>
   );
 }
