@@ -2,8 +2,8 @@ import { createBasketItem } from "clients/basket.client";
 import { getProducts } from "clients/product.client";
 import {
   BasketItem,
-  updateBasketItem,
-  deleteBasketItem,
+  increaseBasketItem,
+  decreaseBasketItem,
   getBasketItems,
 } from "clients/basket.client";
 import DrawerContent from "components/drawer-content";
@@ -40,13 +40,13 @@ export default function Home({ _products, _basketItems }) {
     await updatePage();
   }
 
-  async function increaseBasketItem(id) {
-    await updateBasketItem(id);
+  async function _increaseBasketItem(id) {
+    await increaseBasketItem(id);
     await updatePage();
   }
 
-  async function removeBasketItem(id) {
-    await deleteBasketItem(id);
+  async function _decreaseBasketItem(id) {
+    await decreaseBasketItem(id);
     await updatePage();
   }
 
@@ -61,8 +61,8 @@ export default function Home({ _products, _basketItems }) {
         <Counter
           id={product.basketItems[0]._id}
           quantity={product.basketItems[0].quantity}
-          plus={increaseBasketItem}
-          minus={removeBasketItem}
+          plus={_increaseBasketItem}
+          minus={_decreaseBasketItem}
         />
       ) : null}
     </ProductCard>
@@ -81,8 +81,8 @@ export default function Home({ _products, _basketItems }) {
         <Drawer>
           <DrawerContent
             basketItems={basketItems}
-            plus={increaseBasketItem}
-            minus={removeBasketItem}
+            plus={_increaseBasketItem}
+            minus={_decreaseBasketItem}
           />
         </Drawer>
       </div>

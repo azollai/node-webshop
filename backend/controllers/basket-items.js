@@ -21,9 +21,26 @@ exports.add = async (req, res, next) => {
     } else {
       result = await BasketItem.create({ ...req.body, quantity: 1 });
     }
-    const basketItem2 = await BasketItem.findById(req.params.basketItemId);
-
     res.status(201).json(result);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
+exports.subtract = async (req, res, next) => {
+  try {
+    const basketItem = await BasketItem.findById(req.params.basketItemId);
+
+    let result;
+    if (basketItem.quantity === 1) {
+      return this.remove(req, res, next);
+    } else {
+      result = await BasketItem.findByIdAndUpdate(basketItem.id, {
+        quantity: basketItem.quantity - 1,
+      });
+    }
+
+    res.status(200).json(result);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }

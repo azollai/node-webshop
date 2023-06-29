@@ -20,8 +20,14 @@ export async function createBasketItem(id): Promise<void> {
   });
 }
 
-export async function updateBasketItem(id): Promise<void> {
-  await fetch(`http://localhost:3030/api/v1/basket-items/${id}`, {
+export async function increaseBasketItem(id): Promise<void> {
+  await fetch(`http://localhost:3030/api/v1/basket-items/${id}/add`, {
+    method: "POST",
+  });
+}
+
+export async function decreaseBasketItem(id): Promise<void> {
+  await fetch(`http://localhost:3030/api/v1/basket-items/${id}/subtract`, {
     method: "POST",
   });
 }
