@@ -2,6 +2,7 @@ import { createBasketItem } from "clients/basket.client";
 import { getProducts } from "clients/product.client";
 import {
   BasketItem,
+  updateBasketItem,
   deleteBasketItem,
   getBasketItems,
 } from "clients/basket.client";
@@ -15,6 +16,7 @@ import Counter from "components/counter";
 export async function getServerSideProps() {
   const _products = await getProducts();
   const _basketItems = await getBasketItems();
+  console.log(_basketItems);
 
   return {
     props: { _products, _basketItems },
@@ -38,6 +40,11 @@ export default function Home({ _products, _basketItems }) {
     await updatePage();
   }
 
+  async function increaseBasketItem(id) {
+    await updateBasketItem(id);
+    await updatePage();
+  }
+
   async function removeBasketItem(id) {
     await deleteBasketItem(id);
     await updatePage();
@@ -54,7 +61,7 @@ export default function Home({ _products, _basketItems }) {
         <Counter
           id={product.basketItems[0]._id}
           quantity={product.basketItems[0].quantity}
-          plus={addBasketItem}
+          plus={increaseBasketItem}
           minus={removeBasketItem}
         />
       ) : null}
@@ -74,7 +81,7 @@ export default function Home({ _products, _basketItems }) {
         <Drawer>
           <DrawerContent
             basketItems={basketItems}
-            plus={addBasketItem}
+            plus={increaseBasketItem}
             minus={removeBasketItem}
           />
         </Drawer>

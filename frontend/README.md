@@ -4,7 +4,7 @@ Priority for MVP:
 - [x] Remove products from basket
 - [x] Pay (https://stripe.com/docs/payments/accept-a-payment)
 - [x] Styling
-- [ ] Have a lot of different products
+- [x] Have a lot of different products
 - [ ] Add more of the same product
 - [ ] Pictures for products
 - [ ] Search, filter options for products

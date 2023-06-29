@@ -8,10 +8,21 @@ exports.getAll = async (req, res, next) => {
   return res.status(200).json(results);
 };
 
-exports.create = async (req, res, next) => {
+exports.add = async (req, res, next) => {
   try {
     req.body.product = req.params.productId;
-    const result = await BasketItem.create(req.body);
+
+    let result;
+    if (req.params.basketItemId) {
+      const basketItem = await BasketItem.findById(req.params.basketItemId);
+      result = await BasketItem.findByIdAndUpdate(basketItem.id, {
+        quantity: basketItem.quantity + 1,
+      });
+    } else {
+      result = await BasketItem.create({ ...req.body, quantity: 1 });
+    }
+    const basketItem2 = await BasketItem.findById(req.params.basketItemId);
+
     res.status(201).json(result);
   } catch (error) {
     res.status(400).json({ message: error.message });

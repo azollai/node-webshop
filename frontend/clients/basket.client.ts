@@ -20,6 +20,12 @@ export async function createBasketItem(id): Promise<void> {
   });
 }
 
+export async function updateBasketItem(id): Promise<void> {
+  await fetch(`http://localhost:3030/api/v1/basket-items/${id}`, {
+    method: "POST",
+  });
+}
+
 export async function deleteBasketItem(id): Promise<void> {
   await fetch(`http://localhost:3030/api/v1/basket-items/${id}`, {
     method: "DELETE",
