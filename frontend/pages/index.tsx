@@ -22,6 +22,10 @@ export async function getServerSideProps(context) {
   const _basketItems = await getBasketItems();
 
   return {
+    redirect: {
+      permanent: false,
+      destination: "/products",
+    },
     props: { _products, _basketItems },
   };
 }
